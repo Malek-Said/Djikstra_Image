@@ -1,0 +1,9 @@
+{
+    "files": [
+        "widget.py",
+        "form.ui",
+        "GraphModeler.py",
+        "PathSolverApp.py",
+        "main.py"
+    ]
+}
