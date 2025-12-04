@@ -12,7 +12,22 @@ from PyQt6.QtCore import Qt, QSize, QPoint, pyqtSignal
 
 from GraphModeler import GraphModeler
 
-UI_FILE = 'form.ui'
+#UI_FILE = 'form.ui'
+
+# --- AJOUTEZ CE BLOC AU DÉBUT DE PathSolverApp.py (après les imports) ---
+
+def resource_path(relative_path):
+    """ Obtenir le chemin absolu vers la ressource, fonctionne pour le dev et pour PyInstaller """
+    try:
+        # PyInstaller crée un dossier temporaire _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+# Utilisez cette fonction pour définir le chemin de votre fichier UI
+UI_FILE = resource_path('form.ui')
 
 class ImageLabel(QLabel):
     clicked_signal = pyqtSignal(QPoint)
