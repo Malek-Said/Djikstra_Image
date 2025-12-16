@@ -2,8 +2,8 @@
     "files": [
         "widget.py",
         "form.ui",
-        "GraphModeler.py",
-        "PathSolverApp.py",
+        "ModeleurGraphe.py",
+        "ApplicationChemin.py",
         "main.py"
     ]
 }

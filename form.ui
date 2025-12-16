@@ -39,33 +39,36 @@ QToolButton, QPushButton {
     color: white;
     min-height: 25px;
 }
-QToolButton#loadButton { background-color: #7b4397; }
-QToolButton#resetButton { background-color: #ff9933; color: black; }
+
+/* NOMS MIS À JOUR EN FRANÇAIS DANS LE CSS */
+QToolButton#boutonCharger { background-color: #7b4397; }
+QToolButton#boutonReinitialiser { background-color: #ff9933; color: black; }
 
 /* --- STYLE DES BOUTONS DE CONNEXITÉ --- */
-/* État par défaut (Non sélectionné) */
-QToolButton#size16Button, QToolButton#size32Button { 
+QToolButton#boutonConnexite4, QToolButton#boutonConnexite8 { 
     background-color: #453a66; 
     border: 1px solid #7b4397; 
     color: #cccccc;
 }
-/* État SÉLECTIONNÉ (Checked) - C'est ici que la couleur change */
-QToolButton#size16Button:checked, QToolButton#size32Button:checked {
-    background-color: #9c27b0; /* Violet Vif */
-    border: 2px solid #ffd700; /* Bordure Jaune */
+/* État SÉLECTIONNÉ (Checked) */
+QToolButton#boutonConnexite4:checked, QToolButton#boutonConnexite8:checked {
+    background-color: #9c27b0;
+    border: 2px solid #ffd700;
     color: #ffffff;
 }
-/* État Survol */
-QToolButton#size16Button:hover, QToolButton#size32Button:hover {
+QToolButton#boutonConnexite4:hover, QToolButton#boutonConnexite8:hover {
     background-color: #6a1b9a;
 }
 
-QPushButton#calculateButton { background-color: #4CAF50; font-size: 12pt; padding: 12px; }
-QPushButton#calculateButton:disabled { background-color: #555; color: #aaa; }
+QPushButton#boutonCalculer { background-color: #4CAF50; font-size: 12pt; padding: 12px; }
+QPushButton#boutonCalculer:disabled { background-color: #555; color: #aaa; }
+
 QScrollArea { border: 2px solid #7b4397; border-radius: 8px; background-color: #2a2a4a; }
-QLabel#imageDisplayLabel { background-color: #2a2a4a; }
+QLabel#labelAffichageImage { background-color: #2a2a4a; }
 QLabel { color: #eeeeee; }
-QLabel#dimValueLabel, QLabel#nodesValueLabel, QLabel#pathLengthValueLabel, QLabel#totalCostValueLabel, QLabel#connValueLabel { font-weight: bold; color: #ffffff; }
+
+/* Labels de résultats (IDs mixtes ou français) */
+QLabel#valeurDimLabel, QLabel#valeurNoeudsLabel, QLabel#valeurLongueurLabel, QLabel#valeurCoutLabel, QLabel#valeurConnexiteLabel { font-weight: bold; color: #ffffff; }
    </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -83,18 +86,18 @@ QLabel#dimValueLabel, QLabel#nodesValueLabel, QLabel#pathLengthValueLabel, QLabe
      <widget class="QGroupBox" name="controlsBox">
       <property name="title"><string>Contrôles</string></property>
       <layout class="QGridLayout" name="controlsGridLayout">
-       <item row="0" column="0"><widget class="QToolButton" name="loadButton"><property name="text"><string>⬆️ Charger Image</string></property><property name="sizePolicy"><sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>0</horstretch><verstretch>0</verstretch></sizepolicy></property></widget></item>
-       <item row="0" column="1"><widget class="QToolButton" name="resetButton"><property name="text"><string>🔁 Réinitialiser</string></property><property name="sizePolicy"><sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>0</horstretch><verstretch>0</verstretch></sizepolicy></property></widget></item>
+       <item row="0" column="0"><widget class="QToolButton" name="boutonCharger"><property name="text"><string>⬆️ Charger Image</string></property><property name="sizePolicy"><sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>0</horstretch><verstretch>0</verstretch></sizepolicy></property></widget></item>
+       <item row="0" column="1"><widget class="QToolButton" name="boutonReinitialiser"><property name="text"><string>🔁 Réinitialiser</string></property><property name="sizePolicy"><sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>0</horstretch><verstretch>0</verstretch></sizepolicy></property></widget></item>
        <item row="0" column="2">
         <layout class="QHBoxLayout" name="zoomLayout">
          <item><widget class="QLabel" name="zoomLabel"><property name="text"><string>Zoom:</string></property></widget></item>
-         <item><widget class="QSlider" name="zoomSlider"><property name="orientation"><enum>Qt::Orientation::Horizontal</enum></property><property name="minimum"><number>10</number></property><property name="maximum"><number>200</number></property><property name="value"><number>100</number></property></widget></item>
-         <item><widget class="QLabel" name="zoomValueLabel"><property name="text"><string>100%</string></property></widget></item>
+         <item><widget class="QSlider" name="sliderZoom"><property name="orientation"><enum>Qt::Orientation::Horizontal</enum></property><property name="minimum"><number>10</number></property><property name="maximum"><number>200</number></property><property name="value"><number>100</number></property></widget></item>
+         <item><widget class="QLabel" name="valeurZoomLabel"><property name="text"><string>100%</string></property></widget></item>
         </layout>
        </item>
        
        <item row="1" column="0">
-        <widget class="QToolButton" name="size16Button">
+        <widget class="QToolButton" name="boutonConnexite4">
          <property name="text"><string>4-Connexité (H/B/G/D)</string></property>
          <property name="checkable"><bool>true</bool></property>
          <property name="checked"><bool>true</bool></property>
@@ -102,14 +105,13 @@ QLabel#dimValueLabel, QLabel#nodesValueLabel, QLabel#pathLengthValueLabel, QLabe
         </widget>
        </item>
        <item row="1" column="1">
-        <widget class="QToolButton" name="size32Button">
+        <widget class="QToolButton" name="boutonConnexite8">
          <property name="text"><string>8-Connexité (Diagonales)</string></property>
          <property name="checkable"><bool>true</bool></property>
          <property name="sizePolicy"><sizepolicy hsizetype="Expanding" vsizetype="Fixed"><horstretch>0</horstretch><verstretch>0</verstretch></sizepolicy></property>
         </widget>
        </item>
-       
-       </layout>
+      </layout>
      </widget>
     </item>
 
@@ -121,7 +123,7 @@ QLabel#dimValueLabel, QLabel#nodesValueLabel, QLabel#pathLengthValueLabel, QLabe
       <property name="alignment"><set>Qt::AlignmentFlag::AlignCenter</set></property>
       <widget class="QWidget" name="scrollAreaWidgetContents">
        <layout class="QVBoxLayout" name="scrollLayout">
-        <item><widget class="QLabel" name="imageDisplayLabel"><property name="alignment"><set>Qt::AlignmentFlag::AlignCenter</set></property><property name="text"><string>Aucune image chargée. Utilisez le bouton ci-dessus.</string></property></widget></item>
+        <item><widget class="QLabel" name="labelAffichageImage"><property name="alignment"><set>Qt::AlignmentFlag::AlignCenter</set></property><property name="text"><string>Aucune image chargée. Utilisez le bouton ci-dessus.</string></property></widget></item>
        </layout>
       </widget>
      </widget>
@@ -160,19 +162,19 @@ QLabel#dimValueLabel, QLabel#nodesValueLabel, QLabel#pathLengthValueLabel, QLabe
         <property name="title"><string>Analyse &amp; Résultats</string></property>
         <layout class="QGridLayout" name="resultGridLayout">
          <item row="0" column="0"><widget class="QLabel" name="l1"><property name="text"><string>Dimensions:</string></property></widget></item>
-         <item row="0" column="1"><widget class="QLabel" name="dimValueLabel"><property name="text"><string>N/A</string></property></widget></item>
+         <item row="0" column="1"><widget class="QLabel" name="valeurDimLabel"><property name="text"><string>N/A</string></property></widget></item>
          <item row="1" column="0"><widget class="QLabel" name="l2"><property name="text"><string>Sommets:</string></property></widget></item>
-         <item row="1" column="1"><widget class="QLabel" name="nodesValueLabel"><property name="text"><string>N/A</string></property></widget></item>
+         <item row="1" column="1"><widget class="QLabel" name="valeurNoeudsLabel"><property name="text"><string>N/A</string></property></widget></item>
          <item row="2" column="0"><widget class="QLabel" name="l3"><property name="text"><string>Connexité:</string></property></widget></item>
-         <item row="2" column="1"><widget class="QLabel" name="connValueLabel"><property name="text"><string>4-connexité</string></property></widget></item>
+         <item row="2" column="1"><widget class="QLabel" name="valeurConnexiteLabel"><property name="text"><string>4-connexité</string></property></widget></item>
          <item row="3" column="0"><widget class="QLabel" name="l4"><property name="text"><string>Longueur:</string></property></widget></item>
-         <item row="3" column="1"><widget class="QLabel" name="pathLengthValueLabel"><property name="text"><string>0</string></property></widget></item>
+         <item row="3" column="1"><widget class="QLabel" name="valeurLongueurLabel"><property name="text"><string>0</string></property></widget></item>
          <item row="4" column="0"><widget class="QLabel" name="l5"><property name="text"><string>Coût Total:</string></property></widget></item>
-         <item row="4" column="1"><widget class="QLabel" name="totalCostValueLabel"><property name="text"><string>0.00</string></property></widget></item>
+         <item row="4" column="1"><widget class="QLabel" name="valeurCoutLabel"><property name="text"><string>0.00</string></property></widget></item>
          <item row="5" column="0"><widget class="QLabel" name="l6"><property name="text"><string>Explorés:</string></property></widget></item>
-         <item row="5" column="1"><widget class="QLabel" name="visitedNodesValueLabel"><property name="text"><string>0</string></property></widget></item>
+         <item row="5" column="1"><widget class="QLabel" name="valeurVisitesLabel"><property name="text"><string>0</string></property></widget></item>
          <item row="6" column="0" colspan="2"><widget class="QLabel" name="resultStatusLabel"><property name="text"><string>En attente...</string></property><property name="alignment"><set>Qt::AlignCenter</set></property><property name="styleSheet"><string>background-color: #2a2a4a; padding: 5px; border-radius: 4px;</string></property></widget></item>
-         <item row="7" column="0" colspan="2"><widget class="QPushButton" name="calculateButton"><property name="enabled"><bool>false</bool></property><property name="text"><string>⚡ Calculer le chemin</string></property><property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property></widget></item>
+         <item row="7" column="0" colspan="2"><widget class="QPushButton" name="boutonCalculer"><property name="enabled"><bool>false</bool></property><property name="text"><string>⚡ Calculer le chemin</string></property><property name="cursor"><cursorShape>PointingHandCursor</cursorShape></property></widget></item>
         </layout>
        </widget>
       </item>
